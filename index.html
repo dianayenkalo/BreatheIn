@@ -1,0 +1,696 @@
+﻿<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BreatheIn — хвилина спокою для себе</title>
+    <meta
+      name="description"
+      content="Короткі дихальні вправи та анонімна психологічна самодопомога без реєстрації."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/hero_bg.webp"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Перейти до змісту</a>
+    <div class="page-shell">
+      <header class="header">
+        <div
+          class="header-inner container"
+        >
+          <a
+            href="#top"
+            aria-label="BreatheIn — головна сторінка"
+            class="logo flex items-center rounded-lg focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:outline-none"
+          >
+            <picture>
+              <source srcset="assets/images/logo_1.webp" type="image/webp" />
+              <img
+                src="assets/images/logo_1.png"
+                alt="BreatheIn"
+                width="1024"
+                height="1024"
+                class="logo-img h-11 w-auto md:h-16"
+              />
+            </picture>
+          </a>
+
+          <nav aria-label="Головна навігація" class="main-nav">
+            <ul
+              class="nav-list flex items-center gap-8 text-[15px] font-medium text-[#5B7285]"
+            >
+              <li>
+                <a
+                  href="#steps"
+                  class="rounded transition-colors hover:text-[#245A82] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:outline-none"
+                  >Як це працює</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#why"
+                  class="rounded transition-colors hover:text-[#245A82] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:outline-none"
+                  >Чому BreatheIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#exercises"
+                  class="rounded transition-colors hover:text-[#245A82] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:outline-none"
+                  >Вправи</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="rounded transition-colors hover:text-[#245A82] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:outline-none"
+                  >Підтримка</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <a
+            href="#mood"
+            class="button button-primary hidden min-h-[44px] items-center justify-center rounded-full bg-[#2F6F9F] px-6 text-[15px] font-semibold text-white transition-colors hover:bg-[#245A82] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2 focus-visible:outline-none md:inline-flex"
+          >
+            Обрати свій настрій
+          </a>
+
+          <details class="md:hidden">
+            <summary
+              aria-label="Меню"
+              class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg text-[#2F6F9F] transition-colors hover:bg-[#F4F9FC] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:outline-none [&::-webkit-details-marker]:hidden"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </summary>
+
+            <div
+              class="absolute inset-x-0 top-full border-t border-b border-[#DCE8F0] bg-white px-4 py-4"
+            >
+              <ul class="flex flex-col gap-2 font-medium text-[#1F3A4D]">
+                <li>
+                  <a
+                    href="#steps"
+                    class="flex min-h-[48px] items-center rounded-lg px-3 hover:bg-[#F4F9FC]"
+                    >Як це працює</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#why"
+                    class="flex min-h-[48px] items-center rounded-lg px-3 hover:bg-[#F4F9FC]"
+                    >Чому BreatheIn</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#exercises"
+                    class="flex min-h-[48px] items-center rounded-lg px-3 hover:bg-[#F4F9FC]"
+                    >Вправи</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    class="flex min-h-[48px] items-center rounded-lg px-3 hover:bg-[#F4F9FC]"
+                    >Підтримка</a
+                  >
+                </li>
+              </ul>
+              <a
+                href="#mood"
+                class="mt-4 flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#2F6F9F] font-semibold text-white hover:bg-[#245A82]"
+              >
+                Обрати свій настрій
+              </a>
+            </div>
+          </details>
+        </div>
+      </header>
+
+      <main id="main">
+        <section id="top" class="hero" aria-labelledby="hero-title">
+          <div class="hero-inner container">
+            <div class="hero-copy">
+              <div class="eyebrow">Психологічна самодопомога</div>
+              <h1 id="hero-title">Хвилина для себе. Просто зараз.</h1>
+              <p>
+                Короткі дихальні вправи та підтримка без зайвих кроків —
+                щоб знайти трохи спокою саме тоді, коли це потрібно.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#mood"
+                  >Обрати свій настрій</a
+                >
+              </div>
+              <div
+                class="meta-row"
+                role="group"
+                aria-label="Переваги платформи"
+              >
+                <span>Без реєстрації</span>
+                <span>Анонімно</span>
+                <span>60–90 секунд</span>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="visual-card">
+                <picture>
+                  <source srcset="assets/images/hero_bg.webp" type="image/webp" />
+                  <img
+                    src="assets/images/hero_bg.png"
+                    alt="Дівчина в навушниках сидить у кріслі з чашкою чаю"
+                    width="1344"
+                    height="768"
+                    fetchpriority="high"
+                    class="hero-img"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="mood" class="mood-section" aria-labelledby="mood-title">
+          <div class="mood-layout container">
+            <div class="section-heading block-heading">
+              <h2 id="mood-title">Як ви себе відчуваєте зараз?</h2>
+              <p class="section-description">
+                Оберіть свій стан — і почніть коротку дихальну вправу.
+              </p>
+            </div>
+
+            <ul class="mood-grid" aria-label="Вибір настрою">
+              <li>
+                <button type="button" class="mood-card" data-mood="Тривога" aria-pressed="false">
+                  Тривога
+                </button>
+              </li>
+              <li>
+                <button type="button" class="mood-card" data-mood="Втома" aria-pressed="false">
+                  Втома
+                </button>
+              </li>
+              <li>
+                <button type="button" class="mood-card" data-mood="Роздратування" aria-pressed="false">
+                  Роздратування
+                </button>
+              </li>
+              <li>
+                <button type="button" class="mood-card" data-mood="Сум" aria-pressed="false">
+                  Сум
+                </button>
+              </li>
+              <li>
+                <button type="button" class="mood-card" data-mood="Спокій" aria-pressed="false">
+                  Спокій
+                </button>
+              </li>
+            </ul>
+
+            <div class="exercise-panel" aria-labelledby="exercise-name">
+              <div class="exercise-body">
+                <h3 id="exercise-name" class="exercise-name">Вправи для спокою</h3>
+                <p id="exercise-message" class="exercise-message" aria-live="polite">
+                  Оберіть свій стан — і почніть коротку дихальну вправу.
+                </p>
+                <div class="breathing-circle" aria-hidden="true"></div>
+                <time class="timer" datetime="PT1M" role="timer">01:00</time>
+                <button type="button" class="button button-secondary" id="exercise-control" disabled>
+                  Пауза
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="steps" class="steps" aria-labelledby="steps-title">
+          <div class="container">
+            <div class="section-heading">
+              <h2 id="steps-title">Три кроки до спокою</h2>
+            </div>
+
+            <ol class="card-grid three-columns">
+              <li>
+                <article class="step-card">
+                  <div class="step-number" aria-hidden="true">1</div>
+                  <h3>Оберіть настрій</h3>
+                  <p>Зрозумійте, як почуваєтесь саме зараз.</p>
+                </article>
+              </li>
+              <li>
+                <article class="step-card">
+                  <div class="step-number" aria-hidden="true">2</div>
+                  <h3>Виконайте вправу</h3>
+                  <p>Обрана вправа запуститься одразу — без реєстрації.</p>
+                </article>
+              </li>
+              <li>
+                <article class="step-card">
+                  <div class="step-number" aria-hidden="true">3</div>
+                  <h3>Отримайте підтримку</h3>
+                  <p>Якщо потрібно, напишіть нам через форму на сторінці.</p>
+                </article>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="why" class="features" aria-labelledby="why-title">
+          <div class="container">
+            <div class="section-heading">
+              <h2 id="why-title">Чому BreatheIn</h2>
+            </div>
+
+            <ul class="card-grid three-columns">
+              <li>
+                <article class="info-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/support.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <h3>Миттєва підтримка</h3>
+                  <p>
+                    Швидкий доступ до заспокоєння, коли потрібно знизити напругу
+                    без зайвих кроків.
+                  </p>
+                </article>
+              </li>
+
+              <li>
+                <article class="info-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img
+                      src="assets/icons/breathing.webp"
+                      alt=""
+                      width="128"
+                      height="128"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <h3>Практики на 60–90 секунд</h3>
+                  <p>
+                    Короткі вправи для відновлення балансу, фокусу та спокою в
+                    будь-який момент дня.
+                  </p>
+                </article>
+              </li>
+
+              <li>
+                <article class="info-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/privacy.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <h3>Повна анонімність</h3>
+                  <p>
+                    Без реєстрації, без зайвих даних і без зайвого тиску — лише
+                    приватний простір для себе.
+                  </p>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="exercises" class="services" aria-labelledby="exercises-title">
+          <div class="container">
+            <div class="section-heading">
+              <h2 id="exercises-title">Вправи для спокою</h2>
+            </div>
+
+            <ul class="card-grid service-grid">
+              <li>
+                <article class="info-card service-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/breathing.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <p class="service-duration">60 секунд</p>
+                  <h3>Дихання 4-7-8</h3>
+                  <p>
+                    Знижує тривогу та повертає спокій.
+                  </p>
+                  <a class="button button-primary" href="#mood">Обрати настрій</a>
+                </article>
+              </li>
+
+              <li>
+                <article class="info-card service-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/breathing.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <p class="service-duration">90 секунд</p>
+                  <h3>Квадратне дихання</h3>
+                  <p>
+                    Рівний ритм допомагає зосередитись.
+                  </p>
+                  <a class="button button-primary" href="#mood">Обрати настрій</a>
+                </article>
+              </li>
+
+              <li>
+                <article class="info-card service-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/support.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <p class="service-duration">60 секунд</p>
+                  <h3>Довгий видих</h3>
+                  <p>
+                    М'яко знімає напругу й роздратування.
+                  </p>
+                  <a class="button button-primary" href="#mood">Обрати настрій</a>
+                </article>
+              </li>
+              <li>
+                <article class="info-card service-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/breathing.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <p class="service-duration">90 секунд</p>
+                  <h3>Дихання животом</h3>
+                  <p>Глибоке дихання для розслаблення тіла.</p>
+                  <a class="button button-primary" href="#mood">Обрати настрій</a>
+                </article>
+              </li>
+              <li>
+                <article class="info-card service-card">
+                  <div class="icon-box" aria-hidden="true">
+                    <img src="assets/icons/support.webp" alt="" width="128" height="128" loading="lazy" decoding="async" />
+                  </div>
+                  <p class="service-duration">60 секунд</p>
+                  <h3>Хвилина спокою</h3>
+                  <p>Підтримує приємний стан, коли все добре.</p>
+                  <a class="button button-primary" href="#mood">Обрати настрій</a>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- MEDIA: YouTube video -->
+        <section id="media" class="services" aria-labelledby="media-title">
+          <div class="container">
+            <div class="section-heading">
+              <h2 id="media-title">Дихальна вправа за 60 секунд</h2>
+              <p class="section-description">
+                Зробіть коротку дихальну паузу, щоб заспокоїтися та відновити рівновагу.
+              </p>
+            </div>
+            <div class="aspect-video w-full overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)]">
+              <iframe class="h-full w-full" src="https://www.youtube.com/embed/50lbudUDWuU" title="Дихальна вправа для заспокоєння" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          class="consultation"
+          aria-labelledby="contact-title"
+        >
+          <div class="consultation-shell container">
+            <div class="cta-inner container">
+              <div class="cta-copy">
+                <h2 id="cta-title">Потрібна підтримка фахівця?</h2>
+              </div>
+              <a class="button button-primary" href="#user-message"
+                >Отримати підтримку</a
+              >
+            </div>
+            <div class="section-heading">
+              <h2 id="contact-title">Потрібна консультація чи є пропозиція?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <div class="form-wrapper">
+                <form class="contact-form">
+                  <fieldset class="radio-group">
+                    <legend>Тип звернення</legend>
+                    <label class="radio-item">
+                      <input type="radio" name="request-type" checked />
+                      <span>Фідбек</span>
+                    </label>
+                    <label class="radio-item">
+                      <input type="radio" name="request-type" />
+                      <span>Запит консультації</span>
+                    </label>
+                  </fieldset>
+
+                  <div class="field">
+                    <label for="user-contact">Контакт (необов'язково)</label>
+                    <input
+                      id="user-contact"
+                      type="text"
+                      autocomplete="off"
+                      inputmode="email"
+                      aria-describedby="user-contact-hint"
+                    />
+                    <small id="user-contact-hint">Email або Telegram</small>
+                  </div>
+
+                  <div class="field">
+                    <label for="user-message">Повідомлення</label>
+                    <textarea id="user-message" rows="5"></textarea>
+                  </div>
+
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="consent" required />
+                    <span>Я погоджуюсь з політикою конфіденційності</span>
+                  </label>
+
+                  <button type="submit" class="button button-primary">
+                    Надіслати
+                  </button>
+                </form>
+              </div>
+
+              <!-- MEDIA: Google Map -->
+              <figure class="m-0">
+                <div class="aspect-[4/3] w-full overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)]">
+                  <iframe class="h-full w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1616.5336240285098!2d23.986607763540476!3d49.819246444756175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae79dc43616a5%3A0x5633b744decfde4e!2zNyDQv9GB0LjRhdC-0L3QtdCy0YDQvtC70L7Qs9GW0YfQvdC1INCy0ZbQtNC00ZbQu9C10L3QvdGPINCa0J3QnyDQm9Ce0KAg0JvQntCa0J_Qmw!5e0!3m2!1suk!2sua!4v1793656669503!5m2!1suk!2sua" title="Карта: розташування відділення, Львів" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <figcaption class="mt-2 text-sm text-[#5B7285]">Ми на карті</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="footer bg-[#0F1A24] text-[#F4F9FC]">
+        <div
+          class="container"
+        >
+          <div class="footer-grid grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div class="footer-brand">
+              <a
+                href="#top"
+                aria-label="BreatheIn — головна сторінка"
+                class="inline-block rounded focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+              >
+                <picture>
+                  <source srcset="assets/images/logo_1.webp" type="image/webp" />
+                  <img
+                    src="assets/images/logo_1.png"
+                    alt="BreatheIn"
+                    width="1024"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-14 w-auto"
+                  />
+                </picture>
+              </a>
+              <p class="mt-4 max-w-xs text-sm">
+                Анонімна психологічна самодопомога з короткими дихальними вправами.
+              </p>
+            </div>
+
+            <nav class="footer-column" aria-label="Навігація">
+              <h2 class="mb-4 text-lg font-semibold">Навігація</h2>
+              <ul class="flex flex-col gap-2 text-sm">
+                <li>
+                  <a
+                    href="#steps"
+                    class="rounded transition-colors hover:text-[#8FD1C2] focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+                    >Як це працює</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#why"
+                    class="rounded transition-colors hover:text-[#8FD1C2] focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+                    >Чому BreatheIn</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#exercises"
+                    class="rounded transition-colors hover:text-[#8FD1C2] focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+                    >Вправи</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    class="rounded transition-colors hover:text-[#8FD1C2] focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+                    >Зв’язатися</a
+                  >
+                </li>
+              </ul>
+            </nav>
+
+            <div class="footer-column">
+              <h2 class="mb-4 text-lg font-semibold">Підтримка</h2>
+              <p>BreatheIn не замінює професійну психологічну допомогу.</p>
+              <ul class="flex flex-col gap-2 text-sm">
+                <li>
+                  <a
+                    href="#contact"
+                    class="rounded transition-colors hover:text-[#8FD1C2] focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+                    >Залишити запит</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h2 class="mb-4 text-lg font-semibold">Почніть зараз</h2>
+              <ul class="flex flex-col gap-2 text-sm">
+                <li>
+                  <a
+                    href="#mood"
+                    class="rounded transition-colors hover:text-[#8FD1C2] focus-visible:ring-2 focus-visible:ring-[#8FD1C2] focus-visible:outline-none"
+                    >Обрати настрій</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom mt-8 flex flex-col gap-2 border-t border-white/15 pt-4 text-sm md:flex-row md:justify-between">
+            <p>© 2026 BreatheIn</p>
+            <p>BreatheIn не замінює професійну психологічну допомогу</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const exerciseByMood = {
+        Тривога: { name: "Дихання 4-7-8", seconds: 60 },
+        Втома: { name: "Квадратне дихання", seconds: 90 },
+        Роздратування: { name: "Довгий видих", seconds: 60 },
+        Сум: { name: "Дихання животом", seconds: 90 },
+        Спокій: { name: "Хвилина спокою", seconds: 60 },
+      };
+      const moodButtons = document.querySelectorAll(".mood-card");
+      const timer = document.querySelector(".timer");
+      const exerciseName = document.querySelector("#exercise-name");
+      const exerciseMessage = document.querySelector("#exercise-message");
+      const exerciseControl = document.querySelector("#exercise-control");
+      const breathingCircle = document.querySelector(".breathing-circle");
+      let remainingSeconds = 0;
+      let intervalId;
+      let isRunning = false;
+
+      function updateTimer() {
+        const minutes = Math.floor(remainingSeconds / 60);
+        const seconds = remainingSeconds % 60;
+        timer.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+        timer.dateTime = `PT${remainingSeconds}S`;
+      }
+
+      function stopTimer() {
+        window.clearInterval(intervalId);
+        intervalId = undefined;
+        isRunning = false;
+        breathingCircle.classList.remove("is-running");
+      }
+
+      function startTimer() {
+        if (isRunning || remainingSeconds <= 0) return;
+        isRunning = true;
+        breathingCircle.classList.add("is-running");
+        exerciseControl.textContent = "Пауза";
+        intervalId = window.setInterval(() => {
+          remainingSeconds -= 1;
+          updateTimer();
+          if (remainingSeconds === 0) {
+            stopTimer();
+            exerciseControl.disabled = true;
+            exerciseMessage.textContent = "Вправу завершено. Дайте собі хвилину перепочити.";
+          }
+        }, 1000);
+      }
+
+      moodButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const mood = button.dataset.mood;
+          const exercise = exerciseByMood[mood];
+          stopTimer();
+          moodButtons.forEach((moodButton) => {
+            moodButton.setAttribute("aria-pressed", String(moodButton === button));
+          });
+          remainingSeconds = exercise.seconds;
+          exerciseName.textContent = exercise.name;
+          exerciseMessage.textContent = `Вправа для стану «${mood.toLowerCase()}» почалася. Дихайте у комфортному для вас темпі.`;
+          exerciseControl.disabled = false;
+          updateTimer();
+          startTimer();
+        });
+      });
+
+      document.querySelectorAll(".header details a").forEach((link) => {
+        link.addEventListener("click", () => {
+          link.closest("details").open = false;
+        });
+      });
+
+      exerciseControl.addEventListener("click", () => {
+        if (isRunning) {
+          stopTimer();
+          exerciseControl.textContent = "Продовжити";
+          exerciseMessage.textContent = "Вправу призупинено. Продовжуйте, коли будете готові.";
+          return;
+        }
+        startTimer();
+        exerciseMessage.textContent = "Вправа триває. Дихайте у комфортному для вас темпі.";
+      });
+    </script>
+  </body>
+</html>
