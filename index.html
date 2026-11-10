@@ -458,42 +458,48 @@
 
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <div class="form-wrapper">
-                <form class="contact-form">
-                  <fieldset class="radio-group">
-                    <legend>Тип звернення</legend>
-                    <label class="radio-item">
-                      <input type="radio" name="request-type" checked />
-                      <span>Фідбек</span>
-                    </label>
-                    <label class="radio-item">
-                      <input type="radio" name="request-type" />
-                      <span>Запит консультації</span>
-                    </label>
-                  </fieldset>
-
-                  <div class="field">
-                    <label for="user-contact">Контакт (необов'язково)</label>
+                <form id="feedbackForm" class="contact-form grid grid-cols-1 gap-4 md:grid-cols-2" novalidate>
+                  <div class="field min-w-0">
+                    <label class="text-sm !font-medium" for="username">Ім'я</label>
                     <input
-                      id="user-contact"
+                      id="username"
+                      name="username"
                       type="text"
-                      autocomplete="off"
-                      inputmode="email"
-                      aria-describedby="user-contact-hint"
+                      autocomplete="name"
+                      aria-describedby="nameError"
+                      aria-invalid="false"
+                      class="!min-h-[44px] !rounded-[12px] !border-[#DCE8F0] !text-[#1F3A4D] transition-colors duration-200 hover:!border-[#2F6F9F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2"
                     />
-                    <small id="user-contact-hint">Email або Telegram</small>
+                    <p id="nameError" class="hidden text-sm" role="alert"></p>
                   </div>
 
-                  <div class="field">
-                    <label for="user-message">Повідомлення</label>
-                    <textarea id="user-message" rows="5"></textarea>
+                  <div class="field min-w-0">
+                    <label class="text-sm !font-medium" for="email">Емейл</label>
+                    <input id="email" name="email" type="email" autocomplete="email" aria-describedby="emailError" aria-invalid="false" class="!min-h-[44px] !rounded-[12px] !border-[#DCE8F0] !text-[#1F3A4D] transition-colors duration-200 hover:!border-[#2F6F9F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2" />
+                    <p id="emailError" class="hidden text-sm" role="alert"></p>
                   </div>
 
-                  <label class="checkbox-row">
-                    <input type="checkbox" name="consent" required />
-                    <span>Я погоджуюсь з політикою конфіденційності</span>
-                  </label>
+                  <div class="field col-span-full min-w-0">
+                    <label class="text-sm !font-medium" for="phone">Телефон</label>
+                    <input id="phone" name="phone" type="tel" autocomplete="tel" aria-describedby="phoneError" aria-invalid="false" class="!min-h-[44px] !rounded-[12px] !border-[#DCE8F0] !text-[#1F3A4D] transition-colors duration-200 hover:!border-[#2F6F9F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2" />
+                    <p id="phoneError" class="hidden text-sm" role="alert"></p>
+                  </div>
 
-                  <button type="submit" class="button button-primary">
+                  <div id="user-message" class="field col-span-full min-w-0">
+                    <label class="text-sm !font-medium" for="message">Повідомлення</label>
+                    <textarea id="message" name="message" rows="5" aria-describedby="messageError" aria-invalid="false" class="!min-h-[120px] !rounded-[12px] !border-[#DCE8F0] !text-[#1F3A4D] transition-colors duration-200 hover:!border-[#2F6F9F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2"></textarea>
+                    <p id="messageError" class="hidden text-sm" role="alert"></p>
+                  </div>
+
+                  <div class="field col-span-full min-w-0">
+                    <label class="checkbox-row flex min-h-[44px] cursor-pointer items-center gap-3 rounded-xl p-2 text-sm !font-medium !text-[#1F3A4D]" for="agreement">
+                      <input id="agreement" name="agreement" type="checkbox" aria-describedby="agreementError" aria-invalid="false" class="!h-5 !min-h-0 !w-5 !shrink-0 !p-0 accent-[#2F6F9F] focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2" />
+                      <span>Я погоджуюсь з політикою конфіденційності</span>
+                    </label>
+                    <p id="agreementError" class="hidden text-sm" role="alert"></p>
+                  </div>
+
+                  <button type="submit" class="button button-primary col-span-full min-h-[44px] w-full rounded-full bg-[#2F6F9F] transition-colors duration-200 hover:bg-[#245A82] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2">
                     Надіслати
                   </button>
                 </form>
@@ -692,5 +698,30 @@
         exerciseMessage.textContent = "Вправа триває. Дихайте у комфортному для вас темпі.";
       });
     </script>
+    <div
+      id="successModal"
+      class="hidden fixed inset-0 z-[1000] flex items-center justify-center bg-[#1F3A4D]/60 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="successModalTitle"
+      aria-describedby="successModalDescription"
+    >
+      <div class="w-full max-w-md rounded-[20px] bg-white p-6 text-center shadow-xl sm:p-8">
+        <h2 id="successModalTitle" class="mb-3 text-2xl font-semibold text-[#1F3A4D]">
+          Дякуємо!
+        </h2>
+        <p id="successModalDescription" class="mb-6 text-[#1F3A4D]">
+          Форма успішно пройшла клієнтську валідацію. Демонстрація успішного надсилання.
+        </p>
+        <button
+          id="closeModalBtn"
+          type="button"
+          class="min-h-[44px] rounded-full bg-[#2F6F9F] px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-[#245A82] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6F9F] focus-visible:ring-offset-2"
+        >
+          Закрити
+        </button>
+      </div>
+    </div>
+    <script src="assets/js/validation.js"></script>
   </body>
 </html>
