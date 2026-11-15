@@ -33,6 +33,15 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       />
     </noscript>
+    <!-- PLUGINS (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -174,6 +183,7 @@
                 Короткі дихальні вправи та підтримка без зайвих кроків —
                 щоб знайти трохи спокою саме тоді, коли це потрібно.
               </p>
+              <p class="mt-3 min-h-[28px] text-lg font-semibold text-[#2F6F9F]"><span id="typed-text"></span></p>
               <div class="hero-actions">
                 <a class="button button-primary" href="#mood"
                   >Обрати свій настрій</a
@@ -420,6 +430,214 @@
                 </article>
               </li>
             </ul>
+          </div>
+        </section>
+
+        <section
+          id="gallery"
+          aria-labelledby="gallery-title"
+          class="bg-[#F4F9FC] [--swiper-navigation-color:#2F6F9F] [--swiper-pagination-color:#2F6F9F]"
+        >
+          <div class="mx-auto max-w-[1200px] px-4 py-16">
+            <div class="mb-10 text-center">
+              <h2 id="gallery-title" class="text-3xl font-semibold text-[#1F3A4D]">
+                Галерея спокою
+              </h2>
+              <p class="mt-3 text-[#5B7285]">
+                Короткі вправи для відновлення спокою за 60–90 секунд.
+              </p>
+            </div>
+            <div class="swiper exercises-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide !h-auto">
+                  <article class="group h-full overflow-hidden rounded-[20px] bg-white shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]">
+                    <div class="relative">
+                      <img
+                        src="https://images.pexels.com/photos/8436678/pexels-photo-8436678.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940"
+                        alt="Жінка практикує дихання для спокою"
+                        class="h-48 w-full object-cover !transition-transform duration-300 group-hover:!scale-105"
+                        loading="lazy"
+                      />
+                      <span class="absolute left-4 top-4 rounded-full bg-[#8FD1C2] px-4 py-2 text-sm font-semibold text-[#1F3A4D]">60 секунд</span>
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-[#1F3A4D]">Дихання 4-7-8</h3>
+                      <p class="mt-2 text-[#5B7285]">Знижує тривогу та повертає спокій.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide !h-auto">
+                  <article class="group h-full overflow-hidden rounded-[20px] bg-white shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]">
+                    <div class="relative">
+                      <img
+                        src="https://images.pexels.com/photos/35642508/pexels-photo-35642508.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940"
+                        alt="Людина зосереджено дихає на природі"
+                        class="h-48 w-full object-cover !transition-transform duration-300 group-hover:!scale-105"
+                        loading="lazy"
+                      />
+                      <span class="absolute left-4 top-4 rounded-full bg-[#8FD1C2] px-4 py-2 text-sm font-semibold text-[#1F3A4D]">90 секунд</span>
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-[#1F3A4D]">Квадратне дихання</h3>
+                      <p class="mt-2 text-[#5B7285]">Рівний ритм допомагає зосередитись.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide !h-auto">
+                  <article class="group h-full overflow-hidden rounded-[20px] bg-white shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]">
+                    <div class="relative">
+                      <img
+                        src="https://images.pexels.com/photos/16252909/pexels-photo-16252909.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940"
+                        alt="Жінка відпочиває із заплющеними очима"
+                        class="h-48 w-full object-cover !transition-transform duration-300 group-hover:!scale-105"
+                        loading="lazy"
+                      />
+                      <span class="absolute left-4 top-4 rounded-full bg-[#8FD1C2] px-4 py-2 text-sm font-semibold text-[#1F3A4D]">60 секунд</span>
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-[#1F3A4D]">Довгий видих</h3>
+                      <p class="mt-2 text-[#5B7285]">М'яко знімає напругу й роздратування.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide !h-auto">
+                  <article class="group h-full overflow-hidden rounded-[20px] bg-white shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]">
+                    <div class="relative">
+                      <img
+                        src="https://images.pexels.com/photos/8795388/pexels-photo-8795388.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940"
+                        alt="Жінка виконує дихальну вправу сидячи"
+                        class="h-48 w-full object-cover !transition-transform duration-300 group-hover:!scale-105"
+                        loading="lazy"
+                      />
+                      <span class="absolute left-4 top-4 rounded-full bg-[#8FD1C2] px-4 py-2 text-sm font-semibold text-[#1F3A4D]">90 секунд</span>
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-[#1F3A4D]">Дихання животом</h3>
+                      <p class="mt-2 text-[#5B7285]">Глибоке дихання для розслаблення тіла.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="swiper-slide !h-auto">
+                  <article class="group h-full overflow-hidden rounded-[20px] bg-white shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]">
+                    <div class="relative">
+                      <img
+                        src="https://images.pexels.com/photos/35091109/pexels-photo-35091109.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940"
+                        alt="Спокійний відпочинок на природі"
+                        class="h-48 w-full object-cover !transition-transform duration-300 group-hover:!scale-105"
+                        loading="lazy"
+                      />
+                      <span class="absolute left-4 top-4 rounded-full bg-[#8FD1C2] px-4 py-2 text-sm font-semibold text-[#1F3A4D]">60 секунд</span>
+                    </div>
+                    <div class="p-6">
+                      <h3 class="text-xl font-semibold text-[#1F3A4D]">Хвилина спокою</h3>
+                      <p class="mt-2 text-[#5B7285]">Підтримує приємний стан, коли все добре.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 flex items-center justify-center gap-6 text-[#2F6F9F]">
+              <button type="button" class="swiper-button-prev !static" aria-label="Попередній слайд"></button>
+              <div class="swiper-pagination !static"></div>
+              <button type="button" class="swiper-button-next !static" aria-label="Наступний слайд"></button>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="photo-gallery"
+          aria-labelledby="photo-gallery-title"
+          class="bg-white"
+        >
+          <div class="mx-auto max-w-[1200px] px-4 py-16">
+            <div class="mb-10 text-center">
+              <h2 id="photo-gallery-title" class="text-3xl font-semibold text-[#1F3A4D]">
+                Фотогалерея
+              </h2>
+              <p class="mt-3 text-[#5B7285]">
+                Оберіть зображення, щоб переглянути його у великому форматі.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <a
+                href="https://images.pexels.com/photos/34318765/pexels-photo-34318765.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                data-fancybox="calm-gallery"
+                data-caption="Спокійна мить для відновлення сил"
+                class="group block cursor-zoom-in overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]"
+              >
+                <img
+                  src="https://images.pexels.com/photos/34318765/pexels-photo-34318765.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                  alt="Спокійна мить для відновлення сил"
+                  class="h-64 w-full object-cover !transition-transform duration-300 hover:!scale-[1.03]"
+                  loading="lazy"
+                />
+              </a>
+              <a
+                href="https://images.pexels.com/photos/6632925/pexels-photo-6632925.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                data-fancybox="calm-gallery"
+                data-caption="Практика усвідомленого дихання"
+                class="group block cursor-zoom-in overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]"
+              >
+                <img
+                  src="https://images.pexels.com/photos/6632925/pexels-photo-6632925.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                  alt="Практика усвідомленого дихання"
+                  class="h-64 w-full object-cover !transition-transform duration-300 hover:!scale-[1.03]"
+                  loading="lazy"
+                />
+              </a>
+              <a
+                href="https://images.pexels.com/photos/39312197/pexels-photo-39312197.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                data-fancybox="calm-gallery"
+                data-caption="Затишний куточок для відпочинку"
+                class="group block cursor-zoom-in overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]"
+              >
+                <img
+                  src="https://images.pexels.com/photos/39312197/pexels-photo-39312197.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                  alt="Затишний куточок для відпочинку"
+                  class="h-64 w-full object-cover !transition-transform duration-300 hover:!scale-[1.03]"
+                  loading="lazy"
+                />
+              </a>
+              <a
+                href="https://images.pexels.com/photos/33645145/pexels-photo-33645145.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                data-fancybox="calm-gallery"
+                data-caption="Пауза на свіжому повітрі"
+                class="group block cursor-zoom-in overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]"
+              >
+                <img
+                  src="https://images.pexels.com/photos/33645145/pexels-photo-33645145.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                  alt="Пауза на свіжому повітрі"
+                  class="h-64 w-full object-cover !transition-transform duration-300 hover:!scale-[1.03]"
+                  loading="lazy"
+                />
+              </a>
+              <a
+                href="https://images.pexels.com/photos/9916558/pexels-photo-9916558.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                data-fancybox="calm-gallery"
+                data-caption="Відпочинок у гармонії з природою"
+                class="group block cursor-zoom-in overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]"
+              >
+                <img
+                  src="https://images.pexels.com/photos/9916558/pexels-photo-9916558.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                  alt="Відпочинок у гармонії з природою"
+                  class="h-64 w-full object-cover !transition-transform duration-300 hover:!scale-[1.03]"
+                  loading="lazy"
+                />
+              </a>
+              <a
+                href="https://images.pexels.com/photos/8964948/pexels-photo-8964948.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                data-fancybox="calm-gallery"
+                data-caption="Хвилина тиші та спокою"
+                class="group block cursor-zoom-in overflow-hidden rounded-[20px] shadow-[0_8px_24px_rgba(47,111,159,0.10)] !transition-[transform,box-shadow] duration-300 hover:!-translate-y-1 hover:!shadow-[0_12px_32px_rgba(47,111,159,0.18)]"
+              >
+                <img
+                  src="https://images.pexels.com/photos/8964948/pexels-photo-8964948.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+                  alt="Хвилина тиші та спокою"
+                  class="h-64 w-full object-cover !transition-transform duration-300 hover:!scale-[1.03]"
+                  loading="lazy"
+                />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -722,6 +940,52 @@
         </button>
       </div>
     </div>
+    <!-- PLUGINS (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        new Swiper(".exercises-swiper", {
+          loop: true,
+          spaceBetween: 24,
+          autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            320: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          },
+        });
+        Fancybox.bind("[data-fancybox='calm-gallery']", {
+          Carousel: { Transition: "fade" },
+          Thumbs: { type: "classic" },
+          Images: { Panzoom: { maxScale: 3 } },
+        });
+        new Typed("#typed-text", {
+          strings: [
+            "Без реєстрації.",
+            "Повністю анонімно.",
+            "Дихальна вправа за 60–90 секунд.",
+          ],
+          typeSpeed: 50,
+          backSpeed: 30,
+          backDelay: 1500,
+          loop: true,
+        });
+      });
+    </script>
     <script src="assets/js/validation.js"></script>
   </body>
 </html>
