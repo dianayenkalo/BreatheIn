@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="uk">
+<html lang="uk" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -218,7 +218,7 @@
           </div>
         </section>
 
-        <section id="mood" class="mood-section" aria-labelledby="mood-title">
+        <section id="mood" class="mood-section scroll-mt-24" aria-labelledby="mood-title">
           <div class="mood-layout container">
             <div class="section-heading block-heading">
               <h2 id="mood-title">Як ви себе відчуваєте зараз?</h2>
@@ -255,15 +255,36 @@
               </li>
             </ul>
 
-            <div class="exercise-panel" aria-labelledby="exercise-name">
-              <div class="exercise-body">
+            <div id="timer-card" class="exercise-panel scroll-mt-[120px] p-3" aria-labelledby="exercise-name">
+              <div class="exercise-body gap-1">
                 <h3 id="exercise-name" class="exercise-name">Вправи для спокою</h3>
-                <p id="exercise-message" class="exercise-message" aria-live="polite">
+                <p id="exercise-message" class="exercise-message min-h-0 text-sm" aria-live="polite">
                   Оберіть свій стан — і почніть коротку дихальну вправу.
                 </p>
-                <div class="breathing-circle" aria-hidden="true"></div>
+                <p id="exercise-phase" class="min-h-6 font-medium text-[#2F6F9F]" aria-live="polite"></p>
+                <p id="cycle-progress" class="text-sm text-[#5B7285]"></p>
+                <div class="relative flex h-[170px] w-[170px] items-center justify-center">
+                  <div
+                    id="breathing-circle"
+                    class="breathing-circle scale-90 transition-transform ease-in-out duration-[4000ms] duration-[6000ms] duration-[7000ms] duration-[8000ms]"
+                    aria-hidden="true"
+                  ></div>
+                  <div
+                    id="square-breathing"
+                    class="relative hidden h-[130px] w-[130px] border-2 border-[#2F6F9F] lg:h-[170px] lg:w-[170px]"
+                    aria-hidden="true"
+                  >
+                    <span
+                      id="square-dot"
+                      class="absolute left-1/2 top-1/2 block h-4 w-4 rounded-full bg-[#8FD1C2]"
+                    ></span>
+                  </div>
+                </div>
+                <p id="exercise-hint" class="hidden max-w-xs text-center text-sm text-[#5B7285]">
+                  Поклади руку на живіт, відчуй, як він піднімається
+                </p>
                 <time class="timer" datetime="PT1M" role="timer">01:00</time>
-                <button type="button" class="button button-secondary" id="exercise-control" disabled>
+                <button type="button" class="button button-secondary" id="timer-start" disabled>
                   Пауза
                 </button>
               </div>
@@ -933,21 +954,109 @@
     </div>
     <script>
       const exerciseByMood = {
-        Тривога: { name: "Дихання 4-7-8", seconds: 60 },
-        Втома: { name: "Квадратне дихання", seconds: 90 },
-        Роздратування: { name: "Довгий видих", seconds: 60 },
-        Сум: { name: "Дихання животом", seconds: 90 },
-        Спокій: { name: "Хвилина спокою", seconds: 60 },
+        Тривога: {
+          name: "Дихання 4-7-8",
+          seconds: 60,
+          cycleSeconds: 19,
+          phases: [
+            { label: "Вдих", seconds: 4, animation: "inhale" },
+            { label: "Затримай", seconds: 7, animation: "hold" },
+            { label: "Видих", seconds: 8, animation: "exhale" },
+          ],
+        },
+        Втома: {
+          name: "Квадратне дихання",
+          seconds: 90,
+          cycleSeconds: 16,
+          phases: [
+            { label: "Вдих", seconds: 4, position: "top-left" },
+            { label: "Затримай", seconds: 4, position: "top-right" },
+            { label: "Видих", seconds: 4, position: "bottom-right" },
+            { label: "Затримай", seconds: 4, position: "bottom-left" },
+          ],
+        },
+        Роздратування: {
+          name: "Довгий видих",
+          seconds: 60,
+          cycleSeconds: 12,
+          phases: [
+            { label: "Вдих", seconds: 4, animation: "inhale" },
+            { label: "Видих", seconds: 8, animation: "exhale" },
+          ],
+        },
+        Сум: {
+          name: "Дихання животом",
+          seconds: 90,
+          cycleSeconds: 10,
+          hint: true,
+          phases: [
+            { label: "Вдих", seconds: 4, animation: "inhale" },
+            { label: "Видих", seconds: 6, animation: "exhale" },
+          ],
+        },
+        Спокій: {
+          name: "Хвилина спокою",
+          seconds: 60,
+          cycleSeconds: 10,
+          phases: [
+            { label: "Вдихни спокій", seconds: 4, animation: "inhale" },
+            { label: "Видихни напругу", seconds: 6, animation: "exhale" },
+          ],
+        },
       };
       const moodButtons = document.querySelectorAll(".mood-card");
       const timer = document.querySelector(".timer");
       const exerciseName = document.querySelector("#exercise-name");
       const exerciseMessage = document.querySelector("#exercise-message");
-      const exerciseControl = document.querySelector("#exercise-control");
-      const breathingCircle = document.querySelector(".breathing-circle");
+      const exerciseControl = document.querySelector("#timer-start");
+      const exercisePhase = document.querySelector("#exercise-phase");
+      const cycleProgress = document.querySelector("#cycle-progress");
+      const breathingCircle = document.querySelector("#breathing-circle");
+      const squareBreathing = document.querySelector("#square-breathing");
+      const squareDot = document.querySelector("#square-dot");
+      const exerciseHint = document.querySelector("#exercise-hint");
       let remainingSeconds = 0;
-      let intervalId;
+      let totalSeconds = 0;
+      let breathingSeconds = 0;
+      let silenceSeconds = 0;
+      let plannedCycles = 0;
+      let timerMode = "default";
+      let activeExercise;
+      let elapsedMilliseconds = 0;
+      let lastFrameTimestamp = 0;
+      let animationFrameId;
+      let squareAnimation;
       let isRunning = false;
+      let isPaused = false;
+      let sessionCompleted = true;
+      let displayedPhaseIndex = -1;
+      let displayedCycle = 0;
+      let silencePhaseShown = false;
+      let lastDisplayedSeconds = -1;
+
+      const durationClasses = [
+        "duration-[4000ms]",
+        "duration-[6000ms]",
+        "duration-[7000ms]",
+        "duration-[8000ms]",
+      ];
+      function getSquareKeyframes() {
+        const side = squareBreathing.getBoundingClientRect().width || 170;
+        const border = parseFloat(getComputedStyle(squareBreathing).borderLeftWidth) || 2;
+        const offset = side / 2 - border / 2;
+        const bottomLeft = `translate(-50%, -50%) translate(${-offset}px, ${offset}px)`;
+        const topLeft = `translate(-50%, -50%) translate(${-offset}px, ${-offset}px)`;
+        const topRight = `translate(-50%, -50%) translate(${offset}px, ${-offset}px)`;
+        const bottomRight = `translate(-50%, -50%) translate(${offset}px, ${offset}px)`;
+
+        return [
+          { transform: bottomLeft, offset: 0 },
+          { transform: topLeft, offset: 0.25 },
+          { transform: topRight, offset: 0.5 },
+          { transform: bottomRight, offset: 0.75 },
+          { transform: bottomLeft, offset: 1 },
+        ];
+      }
 
       function updateTimer() {
         const minutes = Math.floor(remainingSeconds / 60);
@@ -957,43 +1066,292 @@
       }
 
       function stopTimer() {
-        window.clearInterval(intervalId);
-        intervalId = undefined;
+        window.cancelAnimationFrame(animationFrameId);
+        animationFrameId = undefined;
         isRunning = false;
-        breathingCircle.classList.remove("is-running");
+      }
+
+      function pauseVisualAnimations() {
+        if (typeof breathingCircle.getAnimations !== "function") return;
+        breathingCircle.getAnimations().forEach((animation) => {
+          if (animation.playState === "running") animation.pause();
+        });
+      }
+
+      function cancelSquareAnimation() {
+        if (squareAnimation) {
+          squareAnimation.cancel();
+          squareAnimation = undefined;
+        }
+      }
+
+      function startSquareAnimation() {
+        cancelSquareAnimation();
+        const keyframes = getSquareKeyframes();
+        squareDot.style.transform = keyframes[0].transform;
+        squareAnimation = squareDot.animate(keyframes, {
+          duration: 16000,
+          easing: "linear",
+          iterations: Infinity,
+        });
       }
 
       function startTimer() {
-        if (isRunning || remainingSeconds <= 0) return;
+        if (isRunning || sessionCompleted) return;
+        const resuming = isPaused;
         isRunning = true;
-        breathingCircle.classList.add("is-running");
+        isPaused = false;
         exerciseControl.textContent = "Пауза";
-        intervalId = window.setInterval(() => {
-          remainingSeconds -= 1;
-          updateTimer();
-          if (remainingSeconds === 0) {
-            stopTimer();
-            exerciseControl.disabled = true;
-            exerciseMessage.textContent = "Вправу завершено. Дайте собі хвилину перепочити.";
+        lastFrameTimestamp = performance.now();
+        if (resuming) {
+          if (squareAnimation) squareAnimation.play();
+          if (typeof breathingCircle.getAnimations === "function") {
+            breathingCircle.getAnimations().forEach((animation) => {
+              if (animation.playState === "paused") animation.play();
+            });
           }
-        }, 1000);
+        } else {
+          if (
+            activeExercise.name === "Квадратне дихання" &&
+            !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ) {
+            startSquareAnimation();
+          }
+          applyCurrentPhase(true);
+        }
+        animationFrameId = window.requestAnimationFrame(updateSession);
+      }
+
+      function getPhaseAt(elapsedMs) {
+        const cycleDurationMs = activeExercise.cycleSeconds * 1000;
+        const cycleNumber = Math.floor(elapsedMs / cycleDurationMs) + 1;
+        const cycleOffsetMs = elapsedMs % cycleDurationMs;
+        let phaseEndMs = (cycleNumber - 1) * cycleDurationMs;
+
+        for (let index = 0; index < activeExercise.phases.length; index += 1) {
+          phaseEndMs += activeExercise.phases[index].seconds * 1000;
+          if (cycleOffsetMs < phaseEndMs - (cycleNumber - 1) * cycleDurationMs) {
+            return { index, cycleNumber, phaseEndMs };
+          }
+        }
+
+        return {
+          index: activeExercise.phases.length - 1,
+          cycleNumber,
+          phaseEndMs,
+        };
+      }
+
+      function setTransitionDuration(element, seconds) {
+        element.classList.remove(...durationClasses);
+        element.classList.add(`duration-[${seconds * 1000}ms]`);
+      }
+
+      function applyPhaseVisual(phase) {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        if (activeExercise.name === "Квадратне дихання") return;
+
+        setTransitionDuration(breathingCircle, phase.seconds);
+        breathingCircle.classList.remove("scale-90", "scale-110");
+        breathingCircle.classList.add(
+          phase.animation === "exhale" ? "scale-90" : "scale-110",
+        );
+      }
+
+      function applyCurrentPhase(animate) {
+        const info = getPhaseAt(elapsedMilliseconds);
+        const phase = activeExercise.phases[info.index];
+
+        if (!silencePhaseShown) {
+          displayedPhaseIndex = info.index;
+          displayedCycle = info.cycleNumber;
+          exercisePhase.textContent = phase.label;
+          cycleProgress.textContent = `Цикл ${Math.min(info.cycleNumber, plannedCycles)} з ${plannedCycles}`;
+        }
+
+        if (animate) applyPhaseVisual(phase);
+      }
+
+      function showSilencePhase() {
+        if (silencePhaseShown) return;
+        silencePhaseShown = true;
+        exercisePhase.textContent = "Хвилина тиші";
+        cycleProgress.textContent = `Цикл ${plannedCycles} з ${plannedCycles}`;
+        breathingCircle.classList.add("hidden");
+        squareBreathing.classList.add("hidden");
+      }
+
+      function updateSession(timestamp) {
+        if (!isRunning) return;
+
+        elapsedMilliseconds += timestamp - lastFrameTimestamp;
+        lastFrameTimestamp = timestamp;
+
+        const displayDurationMs =
+          timerMode === "default"
+            ? activeExercise.seconds * 1000
+            : totalSeconds * 1000;
+        remainingSeconds = Math.ceil(
+          Math.max(0, displayDurationMs - elapsedMilliseconds) / 1000,
+        );
+        if (remainingSeconds !== lastDisplayedSeconds) {
+          lastDisplayedSeconds = remainingSeconds;
+          updateTimer();
+        }
+
+        const inSilencePhase =
+          timerMode === "calculator" &&
+          silenceSeconds > 0 &&
+          elapsedMilliseconds >= breathingSeconds * 1000;
+        if (inSilencePhase) {
+          showSilencePhase();
+        } else if (!silencePhaseShown) {
+          const phaseClock =
+            activeExercise.name === "Квадратне дихання" && squareAnimation
+              ? squareAnimation.currentTime
+              : elapsedMilliseconds;
+          const phaseTime = Math.min(
+            phaseClock,
+            breathingSeconds * 1000 - 1,
+          );
+          const info = getPhaseAt(Math.max(0, phaseTime));
+          if (
+            info.index !== displayedPhaseIndex ||
+            info.cycleNumber !== displayedCycle
+          ) {
+            displayedPhaseIndex = info.index;
+            displayedCycle = info.cycleNumber;
+            const phase = activeExercise.phases[info.index];
+            exercisePhase.textContent = phase.label;
+            cycleProgress.textContent = `Цикл ${Math.min(info.cycleNumber, plannedCycles)} з ${plannedCycles}`;
+            applyPhaseVisual(phase);
+          }
+        }
+
+        const completeAt =
+          timerMode === "default"
+            ? getPhaseAt(activeExercise.seconds * 1000 - 1).phaseEndMs
+            : totalSeconds * 1000;
+        if (elapsedMilliseconds >= completeAt) {
+          stopTimer();
+          cancelSquareAnimation();
+          remainingSeconds = 0;
+          updateTimer();
+          exerciseControl.disabled = true;
+          exerciseMessage.textContent = "Вправу завершено. Дайте собі хвилину перепочити.";
+          timerMode = "default";
+          isPaused = false;
+          sessionCompleted = true;
+          return;
+        }
+
+        animationFrameId = window.requestAnimationFrame(updateSession);
+      }
+
+      function resetVisualState() {
+        cancelSquareAnimation();
+        [breathingCircle, squareDot].forEach((element) => {
+          if (typeof element.getAnimations === "function") {
+            element.getAnimations().forEach((animation) => animation.cancel());
+          }
+          element.classList.add("transition-none");
+        });
+        breathingCircle.classList.remove("hidden", "scale-110", "scale-100");
+        breathingCircle.classList.add("scale-90");
+        squareBreathing.classList.add("hidden");
+        void breathingCircle.offsetWidth;
+        void squareDot.offsetWidth;
+        [breathingCircle, squareDot].forEach((element) => {
+          element.classList.remove("transition-none");
+        });
+      }
+
+      function selectExercise(
+        moodKey,
+        { autoStart, mode = "default", cycles, silence = 0 } = {},
+      ) {
+        const exercise = exerciseByMood[moodKey];
+        if (!exercise) return;
+        if (
+          mode === "calculator" &&
+          (!Number.isInteger(cycles) || cycles <= 0 || ![0, 60].includes(silence))
+        ) {
+          return;
+        }
+
+        stopTimer();
+        resetVisualState();
+        activeExercise = exercise;
+        timerMode = mode;
+        plannedCycles =
+          mode === "calculator"
+            ? cycles
+            : Math.ceil(exercise.seconds / exercise.cycleSeconds);
+        silenceSeconds = mode === "calculator" ? silence : 0;
+        breathingSeconds =
+          mode === "calculator"
+            ? cycles * exercise.cycleSeconds
+            : exercise.seconds;
+        totalSeconds = breathingSeconds + silenceSeconds;
+        elapsedMilliseconds = 0;
+        isPaused = false;
+        sessionCompleted = false;
+        displayedPhaseIndex = -1;
+        displayedCycle = 0;
+        silencePhaseShown = false;
+        lastDisplayedSeconds = totalSeconds;
+        moodButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.mood === moodKey));
+        });
+        remainingSeconds = totalSeconds;
+        exerciseName.textContent = exercise.name;
+        exerciseMessage.textContent = autoStart
+          ? `Вправа для стану «${moodKey.toLowerCase()}» почалася. Дихайте у комфортному для вас темпі.`
+          : `Вправа для стану «${moodKey.toLowerCase()}» готова. Почніть, коли будете готові.`;
+        exerciseHint.classList.toggle("hidden", !exercise.hint);
+        breathingCircle.classList.toggle(
+          "hidden",
+          exercise.name === "Квадратне дихання",
+        );
+        squareBreathing.classList.toggle(
+          "hidden",
+          exercise.name !== "Квадратне дихання",
+        );
+        if (exercise.name === "Квадратне дихання") {
+          squareDot.style.transform = getSquareKeyframes()[0].transform;
+        }
+        exerciseControl.disabled = false;
+        exerciseControl.textContent = autoStart ? "Пауза" : "Почати";
+        updateTimer();
+        applyCurrentPhase(false);
+
+        if (autoStart) startTimer();
       }
 
       moodButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          const mood = button.dataset.mood;
-          const exercise = exerciseByMood[mood];
-          stopTimer();
-          moodButtons.forEach((moodButton) => {
-            moodButton.setAttribute("aria-pressed", String(moodButton === button));
+          selectExercise(button.dataset.mood, {
+            autoStart: true,
+            mode: "default",
           });
-          remainingSeconds = exercise.seconds;
-          exerciseName.textContent = exercise.name;
-          exerciseMessage.textContent = `Вправа для стану «${mood.toLowerCase()}» почалася. Дихайте у комфортному для вас темпі.`;
-          exerciseControl.disabled = false;
-          updateTimer();
-          startTimer();
         });
+      });
+
+      document.addEventListener("breathein:select-exercise", (event) => {
+        const detail = event.detail;
+        if (detail && typeof detail.mood === "string") {
+          selectExercise(detail.mood, {
+            autoStart: false,
+            mode: "calculator",
+            cycles: detail.cycles,
+            silence: detail.silenceSeconds,
+          });
+          window.setTimeout(
+            () => exerciseControl.focus({ preventScroll: true }),
+            0,
+          );
+        }
       });
 
       document.querySelectorAll(".header details a").forEach((link) => {
@@ -1005,12 +1363,17 @@
       exerciseControl.addEventListener("click", () => {
         if (isRunning) {
           stopTimer();
+          isPaused = true;
+          if (squareAnimation) squareAnimation.pause();
+          pauseVisualAnimations();
           exerciseControl.textContent = "Продовжити";
           exerciseMessage.textContent = "Вправу призупинено. Продовжуйте, коли будете готові.";
           return;
         }
         startTimer();
-        exerciseMessage.textContent = "Вправа триває. Дихайте у комфортному для вас темпі.";
+        if (isRunning) {
+          exerciseMessage.textContent = "Вправа триває. Дихайте у комфортному для вас темпі.";
+        }
       });
     </script>
     <div

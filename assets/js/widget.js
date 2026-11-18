@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const exercises = {
-    calm: { name: "Дихання 4-7-8", cycleSeconds: 19 },
-    focus: { name: "Квадратне дихання", cycleSeconds: 16 },
-    release: { name: "Довгий видих", cycleSeconds: 12 },
+    calm: { name: "Дихання 4-7-8", cycleSeconds: 19, moodKey: "Тривога" },
+    focus: { name: "Квадратне дихання", cycleSeconds: 16, moodKey: "Втома" },
+    release: { name: "Довгий видих", cycleSeconds: 12, moodKey: "Роздратування" },
   };
   const initialDurationClasses = [
     "border-[#8FD1C2]",
@@ -130,7 +130,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const sessionsPerDay = stress <= 3 ? 1 : stress <= 6 ? 2 : 3;
     const totalSeconds = sessionSeconds * sessionsPerDay;
 
-    resultExercise.textContent = exercise.name;
+    const exerciseLink = document.createElement("a");
+    exerciseLink.textContent = exercise.name;
+    exerciseLink.href = "#timer-card";
+    exerciseLink.setAttribute(
+      "aria-label",
+      `Перейти до вправи: ${exercise.name}`,
+    );
+    exerciseLink.classList.add(
+      "text-[#2F6F9F]",
+      "underline",
+      "hover:text-[#245A82]",
+      "focus:outline-none",
+      "focus:ring-2",
+      "focus:ring-[#2F6F9F]",
+      "rounded",
+    );
+    exerciseLink.addEventListener("click", () => {
+      document.dispatchEvent(
+        new CustomEvent("breathein:select-exercise", {
+          detail: {
+            mood: exercise.moodKey,
+            cycles,
+            silenceSeconds: silenceEnabled ? 60 : 0,
+          },
+        }),
+      );
+    });
+    resultExercise.replaceChildren(exerciseLink);
     resultCycles.textContent = String(cycles);
     resultSession.textContent = formatDuration(sessionSeconds);
     resultSessionsDay.textContent = String(sessionsPerDay);
